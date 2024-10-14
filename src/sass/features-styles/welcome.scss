@@ -1,0 +1,20 @@
+.welcome {
+	&__paragraph-container {
+		margin: 2em auto;
+		max-width: 300px;
+	}
+}
+@media (min-width: 576px) {
+	.welcome {
+		&__paragraph-container {
+			max-width: 400px;
+		}
+	}
+}
+@media (min-width: 768px) {
+	.welcome {
+		&__paragraph-container {
+			max-width: 450px;
+		}
+	}
+}

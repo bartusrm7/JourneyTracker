@@ -1,10 +1,12 @@
 import CreateJourney from "./features/CreateJourney";
+import Welcome from "./features/Welcome";
 
-const Dashboard: React.FC = () => {
+const Home: React.FC = () => {
 	return (
 		<div>
+			<Welcome />
 			<CreateJourney />
 		</div>
 	);
 };
-export default Dashboard;
+export default Home;

@@ -1,13 +1,14 @@
-import { Container, Col, Row, Form, InputGroup } from "react-bootstrap";
+import { Container, Col, Row, Form, InputGroup, Button } from "react-bootstrap";
 
 const CreateJourney: React.FC = () => {
 	return (
-		<Container>
+		<Container className='create-journey'>
 			<Row>
-				<Col>
-					<Form.Group>
-						<InputGroup></InputGroup>
-					</Form.Group>
+				<Col sm={12} className='create-journey__create-container d-flex justify-content-center'>
+					<InputGroup>
+						<Form.Control className='create-journey__input-creator' placeholder='Create journey' />
+						<Button>Create Journey</Button>
+					</InputGroup>
 				</Col>
 			</Row>
 		</Container>
