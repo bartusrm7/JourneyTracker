@@ -5,8 +5,11 @@
 	padding: 0;
 	margin: 0;
 }
-$main-page-color: background linear-gradient(8deg, rgba(92, 159, 165, 1) 24%, rgba(0, 74, 170, 1) 68%);
+$main-page-color: background linear-gradient(92deg, rgb(197, 19, 19) 0%, rgb(143, 0, 0) 90%);
+$main-letters-color: rgba(213, 205, 205, 1);
 
 body {
-	background-color: $main-page-color;
+	min-height: 100vh;
+	background: $main-page-color;
+	color: $main-letters-color;
 }
