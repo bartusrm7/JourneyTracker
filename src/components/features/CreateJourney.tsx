@@ -4,7 +4,7 @@ const CreateJourney: React.FC = () => {
 	return (
 		<Container className='create-journey'>
 			<Row>
-				<Col sm={12} className='create-journey__create-container d-flex justify-content-center'>
+				<Col   md={10} lg={8} xxl={6} className='create-journey__create-container d-flex justify-content-center'>
 					<InputGroup>
 						<Form.Control className='create-journey__input-creator' placeholder='Create journey' />
 						<Button>Create Journey</Button>

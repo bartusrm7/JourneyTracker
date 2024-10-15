@@ -6,6 +6,7 @@ import "./sass/_global.scss";
 import "./sass/home.scss";
 import "./sass/features-styles/welcome.scss";
 import "./sass/features-styles/create-journey.scss";
+import "./sass/features-styles/destination-container.scss";
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>

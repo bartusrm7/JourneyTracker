@@ -1,4 +1,5 @@
 import CreateJourney from "./features/CreateJourney";
+import DestinationContainer from "./features/DestinationContainer";
 import Welcome from "./features/Welcome";
 
 const Home: React.FC = () => {
@@ -6,6 +7,7 @@ const Home: React.FC = () => {
 		<div>
 			<Welcome />
 			<CreateJourney />
+			<DestinationContainer />
 		</div>
 	);
 };
