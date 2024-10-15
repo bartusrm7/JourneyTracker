@@ -7,7 +7,16 @@
 }
 $main-page-color: background linear-gradient(92deg, rgb(197, 19, 19) 0%, rgb(143, 0, 0) 90%);
 $main-letters-color: rgba(213, 205, 205, 1);
-
+$destination-container-color: background
+	linear-gradient(
+		207deg,
+		rgba(35, 35, 35, 1) 5%,
+		rgba(0, 0, 0, 1) 25%,
+		rgba(35, 35, 35, 1) 50%,
+		rgba(0, 0, 0, 1) 75%,
+		rgba(35, 35, 35, 1) 100%
+	);
+	
 body {
 	min-height: 100vh;
 	background: $main-page-color;

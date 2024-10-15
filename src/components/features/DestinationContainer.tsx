@@ -3,7 +3,7 @@ import STRUCTURES from "../shared-components/DestinationAndPlan";
 
 const DestinationContainer: React.FC = () => {
 	return (
-		<Container className='destination-container pt-5'>
+		<Container className='destination-container pt-5 pb-3'>
 			<Row>
 				<Col xl={10} className='m-auto'>
 					<Form className='destination-container__main-container'>
