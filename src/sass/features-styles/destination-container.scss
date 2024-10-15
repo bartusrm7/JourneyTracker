@@ -1,5 +1,7 @@
 .destination-container {
+	margin: auto;
 	&__main-container {
-		margin: auto;
+		background: #fff;
+		border-radius: 5px;
 	}
 }
