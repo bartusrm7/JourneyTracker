@@ -1,33 +1,41 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface JourneyState {
-	journey: {
-		journeyName: string[];
+interface Journey {
+	journeyName: string;
+	structures: {
 		travelPlanArray: string[];
 		mustHaveItemsArray: string[];
 		bugdetAndCostsArray: string[];
 		photosAndMemoriesArray: string[];
 	};
 }
+interface JourneyState {
+	journey: Journey[];
+	isJourneyNameExistings: boolean;
+}
 const initialState: JourneyState = {
-	journey: {
-		journeyName: [],
-		travelPlanArray: [],
-		mustHaveItemsArray: [],
-		bugdetAndCostsArray: [],
-		photosAndMemoriesArray: [],
-	},
+	journey: [],
+	isJourneyNameExistings: false,
 };
 const journeySlice = createSlice({
 	name: "journey",
 	initialState,
 	reducers: {
-		addJourneyName: (state, action: PayloadAction<string>) => {
-			state.journey.journeyName.push(action.payload);
+		setAddJourneyDataContainer: (state, action: PayloadAction<string>) => {
+			const newJourney: Journey = {
+				journeyName: action.payload,
+				structures: {
+					travelPlanArray: [],
+					mustHaveItemsArray: [],
+					bugdetAndCostsArray: [],
+					photosAndMemoriesArray: [],
+				},
+			};
+			state.journey.push(newJourney);
+			state.isJourneyNameExistings = true;
 		},
-		addWholeContainer: (state, action: PayloadAction<string>) => {},
 	},
 });
 
-export const { addJourneyName } = journeySlice.actions;
+export const { setAddJourneyDataContainer } = journeySlice.actions;
 export default journeySlice.reducer;

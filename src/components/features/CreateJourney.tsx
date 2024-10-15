@@ -1,14 +1,14 @@
 import { Container, Col, Row, Form, InputGroup, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { addJourneyName } from "../../store/journeySlice";
+import { setAddJourneyDataContainer } from "../../store/journeySlice";
 
 const CreateJourney: React.FC = () => {
 	const dispatch = useDispatch();
 	const [toAssignJourney, setToAssignJourney] = useState<string>("");
 
 	const handleCreateJourneyName = () => {
-		dispatch(addJourneyName(toAssignJourney));
+		dispatch(setAddJourneyDataContainer(toAssignJourney));
 		setToAssignJourney("");
 	};
 
