@@ -22,7 +22,7 @@ const DestinationContainer: React.FC = () => {
 												<Accordion.Header>{structure.label}</Accordion.Header>
 												<Accordion.Body>
 													<InputGroup>
-														<Form.Control></Form.Control>
+														<Form.Control placeholder={structure.placeholder}></Form.Control>
 														<Button>Add</Button>
 													</InputGroup>
 												</Accordion.Body>

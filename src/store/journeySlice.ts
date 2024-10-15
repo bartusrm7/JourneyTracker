@@ -34,8 +34,39 @@ const journeySlice = createSlice({
 			state.journey.push(newJourney);
 			state.isJourneyNameExistings = true;
 		},
+		setAddTravelPlan: (state, action: PayloadAction<{ journeyPlan: string; indexJourney: number }>) => {
+			const { journeyPlan, indexJourney } = action.payload;
+			if (state.journey[indexJourney]) {
+				state.journey[indexJourney].structures.travelPlanArray.push(journeyPlan);
+			}
+		},
+		setAddMustHaveItems: (state, action: PayloadAction<{ journeyThings: string; indexJourney: number }>) => {
+			const { journeyThings, indexJourney } = action.payload;
+			if (state.journey[indexJourney]) {
+				state.journey[indexJourney].structures.mustHaveItemsArray.push(journeyThings);
+			}
+		},
+
+		setBugdetAndCosts: (state, action: PayloadAction<{ journeyBudget: string; indexJourney: number }>) => {
+			const { journeyBudget, indexJourney } = action.payload;
+			if (state.journey[indexJourney]) {
+				state.journey[indexJourney].structures.bugdetAndCostsArray.push(journeyBudget);
+			}
+		},
+		setPhotosAndMemories: (state, action: PayloadAction<{ journeyMemories: string; indexJourney: number }>) => {
+			const { journeyMemories, indexJourney } = action.payload;
+			if (state.journey[indexJourney]) {
+				state.journey[indexJourney].structures.photosAndMemoriesArray.push(journeyMemories);
+			}
+		},
 	},
 });
 
-export const { setAddJourneyDataContainer } = journeySlice.actions;
+export const {
+	setAddJourneyDataContainer,
+	setAddTravelPlan,
+	setAddMustHaveItems,
+	setBugdetAndCosts,
+	setPhotosAndMemories,
+} = journeySlice.actions;
 export default journeySlice.reducer;
