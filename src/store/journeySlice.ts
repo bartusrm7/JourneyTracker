@@ -46,7 +46,6 @@ const journeySlice = createSlice({
 				state.journey[indexJourney].structures.mustHaveItemsArray.push(journeyThings);
 			}
 		},
-
 		setBugdetAndCosts: (state, action: PayloadAction<{ journeyBudget: string; indexJourney: number }>) => {
 			const { journeyBudget, indexJourney } = action.payload;
 			if (state.journey[indexJourney]) {
