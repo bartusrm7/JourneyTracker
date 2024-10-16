@@ -25,7 +25,6 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 		switch (field) {
 			case "Travel Plan":
 				dispatch(setAddTravelPlan({ journeyPlan: inputAccordionValue, indexJourney }));
-
 				break;
 			case "Must-Have Items":
 				dispatch(setAddMustHaveItems({ journeyThings: inputAccordionValue, indexJourney }));
