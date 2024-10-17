@@ -5,3 +5,11 @@
 		border-radius: 5px;
 	}
 }
+.accordion-button:focus {
+	box-shadow: 0px 0px 2px 1px black;
+}
+.accordion-button:not(.collapsed) {
+	background: $dark-gradient-color;
+	color: $main-letters-color;
+	box-shadow: none;
+}

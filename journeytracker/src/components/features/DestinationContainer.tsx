@@ -1,4 +1,4 @@
-import { Container, Row, Col, Form, Accordion} from "react-bootstrap";
+import { Container, Row, Col, Form, Accordion } from "react-bootstrap";
 import STRUCTURES from "../shared-components/DestinationAndPlan";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
@@ -21,7 +21,7 @@ const DestinationContainer: React.FC = () => {
 								<Accordion>
 									{STRUCTURES.map((structure, index) => (
 										<Accordion key={index}>
-											<Accordion.Item eventKey={`${indexJourney}`}>
+											<Accordion.Item className='destination-container__accordion-item' eventKey={`${indexJourney}`}>
 												<Accordion.Header>{structure.label}</Accordion.Header>
 												<Accordion.Body>
 													<CreateAccordionItem indexJourney={indexJourney} placeholder={structure.placeholder} />

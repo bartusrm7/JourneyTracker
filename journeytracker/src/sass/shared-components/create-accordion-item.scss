@@ -1,0 +1,39 @@
+@import "../global";
+.create-accordion-item {
+	&__container-actions {
+		position: absolute;
+		right: 0;
+	}
+	&__finish-btn {
+		font-size: 1.25rem;
+		border: 1px solid rgb(94, 94, 94);
+	}
+}
+.btn-primary {
+	--bs-btn-active-bg: none;
+	--bs-btn-active-color: rgb(126, 124, 124);
+}
+.accordion-group-btn {
+	padding: 0;
+	color: black;
+	&:hover {
+		background: none;
+		color: black;
+	}
+}
+.input-group-text {
+	padding-right: 0.35em;
+}
+.accordion-group-btn,
+.input-group-text {
+	background: none;
+	border: none;
+}
+.form-check-input:checked {
+	background-color: rgb(126, 124, 124);
+	border: none;
+	box-shadow: none;
+}
+.form-check-input:active {
+	box-shadow: none;
+}

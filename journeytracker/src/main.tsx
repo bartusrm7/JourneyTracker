@@ -9,6 +9,7 @@ import "./sass/home.scss";
 import "./sass/features-styles/welcome.scss";
 import "./sass/features-styles/create-journey.scss";
 import "./sass/features-styles/destination-container.scss";
+import "./sass/shared-components/create-accordion-item.scss";
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>

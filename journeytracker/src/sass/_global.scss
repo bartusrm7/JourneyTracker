@@ -7,7 +7,7 @@
 }
 $main-page-color: background linear-gradient(92deg, rgb(197, 19, 19) 0%, rgb(143, 0, 0) 90%);
 $main-letters-color: rgba(213, 205, 205, 1);
-$destination-container-color: background
+$very-dark-gradient-color: background
 	linear-gradient(
 		207deg,
 		rgba(35, 35, 35, 1) 5%,
@@ -16,9 +16,37 @@ $destination-container-color: background
 		rgba(0, 0, 0, 1) 75%,
 		rgba(35, 35, 35, 1) 100%
 	);
-	
+$main-font: "Afacad Flux";
+$dark-gradient-color: background
+	linear-gradient(
+		207deg,
+		rgba(39, 39, 39, 1) 5%,
+		rgba(74, 74, 74, 1) 25%,
+		rgba(71, 69, 69, 1) 50%,
+		rgba(77, 77, 77, 1) 75%,
+		rgba(26, 26, 26, 1) 100%
+	);
+
 body {
 	min-height: 100vh;
 	background: $main-page-color;
 	color: $main-letters-color;
+	font-family: $main-font;
+}
+.global-input {
+	border: 1px solid black;
+	&:focus {
+		box-shadow: none;
+		border: 1px solid black;
+	}
+}
+.global-btn {
+	background: $very-dark-gradient-color;
+	border: 1px solid black;
+	&:hover {
+		border: 1px solid black;
+	}
+}
+.btn-primary {
+	--bs-btn-active-border-color: black;
 }

@@ -8,6 +8,8 @@ const CreateJourney: React.FC = () => {
 	const [toAssignJourney, setToAssignJourney] = useState<string>("");
 
 	const handleCreateJourneyName = () => {
+		if(!toAssignJourney)return
+
 		dispatch(setAddJourneyDataContainer(toAssignJourney));
 		setToAssignJourney("");
 	};
@@ -18,12 +20,14 @@ const CreateJourney: React.FC = () => {
 				<Col md={10} lg={8} xxl={6} className='create-journey__create-container m-auto d-flex justify-content-center'>
 					<InputGroup>
 						<Form.Control
-							className='create-journey__input-creator'
+							className='create-journey__input-creator global-input'
 							placeholder='Enter journey name'
 							value={toAssignJourney}
 							onChange={e => setToAssignJourney(e.target.value)}
 						/>
-						<Button onClick={handleCreateJourneyName}>Create Journey</Button>
+						<Button className='create-journey__create-btn global-btn' onClick={handleCreateJourneyName}>
+							Create Journey
+						</Button>
 					</InputGroup>
 				</Col>
 			</Row>

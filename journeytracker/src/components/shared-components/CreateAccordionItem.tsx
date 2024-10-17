@@ -7,6 +7,7 @@ import {
 } from "../../store/journeySlice";
 import { useDispatch } from "react-redux";
 import { Form, InputGroup, Button } from "react-bootstrap";
+import { EditOutlined, DeleteOutlined } from "@mui/icons-material";
 
 interface CreateAccordionItemProps {
 	indexJourney: number;
@@ -22,6 +23,8 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 	const [accordionListValue, setAccordionListValue] = useState<string[]>([]);
 
 	const handleCreateAccordionItemToCorrectContainer = (field: string) => {
+		if (!inputAccordionValue) return;
+
 		switch (field) {
 			case "Travel Plan":
 				dispatch(setAddTravelPlan({ journeyPlan: inputAccordionValue, indexJourney }));
@@ -45,16 +48,30 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 			<Form.Group>
 				<InputGroup>
 					<Form.Control
+						className='global-input'
 						placeholder={placeholder}
 						value={inputAccordionValue}
 						onChange={e => setInputAccordionValue(e.target.value)}
 					/>
-					<Button onClick={() => handleCreateAccordionItemToCorrectContainer(placeholder)}>Add</Button>
+					<Button className='global-btn' onClick={() => handleCreateAccordionItemToCorrectContainer(placeholder)}>
+						Add
+					</Button>
 				</InputGroup>
 				<Form.Text>
 					{accordionListValue.map((item, index) => (
-						<div className='create-accordion-item__created-item' key={index}>
-							{item}
+						<div
+							className='create-accordion-item__created-item pt-2 position-relative d-flex align-items-center'
+							key={index}>
+							<div className='create-accordion-item__item'>{item}</div>
+							<div className='create-accordion-item__container-actions d-flex'>
+								<InputGroup.Checkbox className='create-accordion-item__finish-btn' />
+								<Button className='create-accordion-item__edit-btn accordion-group-btn changed-state-btn'>
+									<EditOutlined />
+								</Button>
+								<Button className='create-accordion-item__remove-btn accordion-group-btn changed-state-btn'>
+									<DeleteOutlined />
+								</Button>
+							</div>
 						</div>
 					))}
 				</Form.Text>
