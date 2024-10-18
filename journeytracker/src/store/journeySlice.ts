@@ -66,6 +66,12 @@ const journeySlice = createSlice({
 				state.isTaskDone[indexTask] = taskDone;
 			}
 		},
+		setRemoveTask: (state, action: PayloadAction<{ titleTask: string; indexTask: number }>) => {
+			const { titleTask, indexTask } = action.payload;
+			state.journey = state.journey.filter(
+				(journeyField, index) => index !== indexTask && journeyField.journeyName !== titleTask
+			);
+		},
 	},
 });
 

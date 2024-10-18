@@ -77,7 +77,9 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 						<div
 							className='create-accordion-item__created-item pt-2 position-relative d-flex align-items-center'
 							key={index}>
-							<div className={`create-accordion-item__item ${isAccordionTaskDone[index] ? "done-task" : ""}`}>{item}</div>
+							<div className={`create-accordion-item__item ${isAccordionTaskDone[index] ? "done-task" : ""}`}>
+								{item}
+							</div>
 							<div className='create-accordion-item__container-actions d-flex'>
 								<InputGroup.Checkbox
 									className='create-accordion-item__finish-btn'
