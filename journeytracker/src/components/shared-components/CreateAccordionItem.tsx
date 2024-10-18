@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	setAddTravelPlan,
 	setAddMustHaveItems,
 	setBugdetAndCosts,
 	setPhotosAndMemories,
+	setMarkTaskDone,
 } from "../../store/journeySlice";
 import { useDispatch } from "react-redux";
 import { Form, InputGroup, Button } from "react-bootstrap";
@@ -21,6 +22,7 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 	const dispatch = useDispatch();
 	const [inputAccordionValue, setInputAccordionValue] = useState<string>("");
 	const [accordionListValue, setAccordionListValue] = useState<string[]>([]);
+	const [isAccordionTaskDone, setIsAccordionTaskDone] = useState<boolean[]>([]);
 
 	const handleCreateAccordionItemToCorrectContainer = (field: string) => {
 		if (!inputAccordionValue) return;
@@ -43,6 +45,19 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 		setInputAccordionValue("");
 	};
 
+	const handleIsAccordionTaskDone = (index: number) => {
+		const updatedtaskDone = isAccordionTaskDone.map((itemDone, indexDone) =>
+			indexDone === index ? !itemDone : itemDone
+		);
+		setIsAccordionTaskDone(updatedtaskDone);
+		dispatch(setMarkTaskDone({ taskDone: updatedtaskDone[index], indexTask: index }));
+	};
+
+	useEffect(() => {
+		const initialState = accordionListValue.map(() => false);
+		setIsAccordionTaskDone(prevState => [...prevState, ...initialState]);
+	}, [accordionListValue]);
+
 	return (
 		<div>
 			<Form.Group>
@@ -62,9 +77,13 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 						<div
 							className='create-accordion-item__created-item pt-2 position-relative d-flex align-items-center'
 							key={index}>
-							<div className='create-accordion-item__item'>{item}</div>
+							<div className={`create-accordion-item__item ${isAccordionTaskDone[index] ? "done-task" : ""}`}>{item}</div>
 							<div className='create-accordion-item__container-actions d-flex'>
-								<InputGroup.Checkbox className='create-accordion-item__finish-btn' />
+								<InputGroup.Checkbox
+									className='create-accordion-item__finish-btn'
+									checked={isAccordionTaskDone[index]}
+									onClick={() => handleIsAccordionTaskDone(index)}
+								/>
 								<Button className='create-accordion-item__edit-btn accordion-group-btn changed-state-btn'>
 									<EditOutlined />
 								</Button>

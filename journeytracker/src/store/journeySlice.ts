@@ -12,10 +12,12 @@ interface Journey {
 interface JourneyState {
 	journey: Journey[];
 	isJourneyNameExistings: boolean;
+	isTaskDone: boolean[];
 }
 const initialState: JourneyState = {
 	journey: [],
 	isJourneyNameExistings: false,
+	isTaskDone: [],
 };
 const journeySlice = createSlice({
 	name: "journey",
@@ -58,6 +60,12 @@ const journeySlice = createSlice({
 				state.journey[indexJourney].structures.photosAndMemoriesArray.push(journeyMemories);
 			}
 		},
+		setMarkTaskDone: (state, action: PayloadAction<{ taskDone: boolean; indexTask: number }>) => {
+			const { taskDone, indexTask } = action.payload;
+			if (state.isTaskDone[indexTask]) {
+				state.isTaskDone[indexTask] = taskDone;
+			}
+		},
 	},
 });
 
@@ -67,5 +75,6 @@ export const {
 	setAddMustHaveItems,
 	setBugdetAndCosts,
 	setPhotosAndMemories,
+	setMarkTaskDone,
 } = journeySlice.actions;
 export default journeySlice.reducer;
