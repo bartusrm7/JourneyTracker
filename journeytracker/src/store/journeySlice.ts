@@ -67,10 +67,29 @@ const journeySlice = createSlice({
 			}
 		},
 		setRemoveTask: (state, action: PayloadAction<{ titleTask: string; indexTask: number }>) => {
-			const { titleTask, indexTask } = action.payload;
-			state.journey = state.journey.filter(
-				(journeyField, index) => index !== indexTask && journeyField.journeyName !== titleTask
-			);
+			const { indexTask } = action.payload;
+			state.journey.map((task, index) => {
+				if (indexTask === index) {
+					return {
+						...task,
+						structures: {
+							...task.structures,
+							travelPlanArray: task.structures.travelPlanArray.filter(
+								(_, indexRemoveTask) => indexRemoveTask !== index
+							),
+							mustHaveItemsArray: task.structures.mustHaveItemsArray.filter(
+								(_, indexRemoveTask) => indexRemoveTask !== index
+							),
+							bugdetAndCostsArray: task.structures.bugdetAndCostsArray.filter(
+								(_, indexRemoveTask) => indexRemoveTask !== index
+							),
+							photosAndMemoriesArray: task.structures.photosAndMemoriesArray.filter(
+								(_, indexRemoveTask) => indexRemoveTask !== index
+							),
+						},
+					};
+				}
+			});
 		},
 	},
 });
@@ -82,5 +101,6 @@ export const {
 	setBugdetAndCosts,
 	setPhotosAndMemories,
 	setMarkTaskDone,
+	setRemoveTask,
 } = journeySlice.actions;
 export default journeySlice.reducer;

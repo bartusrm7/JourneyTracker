@@ -5,6 +5,7 @@ import {
 	setBugdetAndCosts,
 	setPhotosAndMemories,
 	setMarkTaskDone,
+	setRemoveTask,
 } from "../../store/journeySlice";
 import { useDispatch } from "react-redux";
 import { Form, InputGroup, Button } from "react-bootstrap";
@@ -46,11 +47,22 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 	};
 
 	const handleIsAccordionTaskDone = (index: number) => {
-		const updatedtaskDone = isAccordionTaskDone.map((itemDone, indexDone) =>
+		const updatedTaskDone = isAccordionTaskDone.map((itemDone, indexDone) =>
 			indexDone === index ? !itemDone : itemDone
 		);
-		setIsAccordionTaskDone(updatedtaskDone);
-		dispatch(setMarkTaskDone({ taskDone: updatedtaskDone[index], indexTask: index }));
+		setIsAccordionTaskDone(updatedTaskDone);
+		dispatch(setMarkTaskDone({ taskDone: updatedTaskDone[index], indexTask: index }));
+	};
+
+	const handleRemoveTask = (index: number) => {
+		const filteredTaskItem = accordionListValue[index];
+		if (filteredTaskItem) {
+			dispatch(setRemoveTask({ titleTask: filteredTaskItem, indexTask: index }));
+
+			setAccordionListValue(prevState => prevState.filter((_, listIndex) => listIndex !== index));
+			setIsAccordionTaskDone(prevState => prevState.filter((_, taskIndex) => taskIndex !== index));
+		}
+		// DZIAŁA USUWANIE, ALE PROBLEMEM JEST, ŻE CZASEM WYSKAKUJE BŁĄD BARDZO DŁUGI W KONSOLI - SPRÓBOWAĆ TO NAPRAWIĆ!!!
 	};
 
 	useEffect(() => {
@@ -89,7 +101,9 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 								<Button className='create-accordion-item__edit-btn accordion-group-btn changed-state-btn'>
 									<EditOutlined />
 								</Button>
-								<Button className='create-accordion-item__remove-btn accordion-group-btn changed-state-btn'>
+								<Button
+									className='create-accordion-item__remove-btn accordion-group-btn changed-state-btn'
+									onClick={() => handleRemoveTask(index)}>
 									<DeleteOutlined />
 								</Button>
 							</div>
