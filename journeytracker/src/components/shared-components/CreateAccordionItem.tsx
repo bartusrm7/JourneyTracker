@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	setAddTravelPlan,
 	setAddMustHaveItems,
@@ -10,6 +10,7 @@ import {
 import { useDispatch } from "react-redux";
 import { Form, InputGroup, Button } from "react-bootstrap";
 import { EditOutlined, DeleteOutlined } from "@mui/icons-material";
+import EditTask from "../features/EditTask";
 
 interface CreateAccordionItemProps {
 	indexJourney: number;
@@ -24,6 +25,14 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 	const [inputAccordionValue, setInputAccordionValue] = useState<string>("");
 	const [accordionListValue, setAccordionListValue] = useState<string[]>([]);
 	const [isAccordionTaskDone, setIsAccordionTaskDone] = useState<boolean[]>([]);
+	const [isOpenEditTaskContainer, setIsOpenEditTaskContainer] = useState<boolean>(false);
+	const [editTaskText, setEditTaskText] = useState<string>("");
+	const [editTaskIndex, setEditTaskIndex] = useState<number | null>(null);
+	const handleOpenEditTaskContainer = (index: number) => {
+		setEditTaskIndex(index);
+		setEditTaskText(accordionListValue[index]);
+		setIsOpenEditTaskContainer(!isOpenEditTaskContainer);
+	};
 
 	const handleCreateAccordionItemToCorrectContainer = (field: string) => {
 		if (!inputAccordionValue) return;
@@ -54,6 +63,17 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 		dispatch(setMarkTaskDone({ taskDone: updatedTaskDone[index], indexTask: index }));
 	};
 
+	const handleEditTaskToSave = () => {
+		if (editTaskIndex !== null) {
+			const updatedList = [...accordionListValue];
+			updatedList[editTaskIndex] = editTaskText;
+
+			setAccordionListValue(updatedList);
+			setEditTaskIndex(null);
+			setIsOpenEditTaskContainer(false);
+		}
+	};
+
 	const handleRemoveTask = (index: number) => {
 		const filteredTaskItem = accordionListValue[index];
 		if (filteredTaskItem) {
@@ -62,7 +82,6 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 			setAccordionListValue(prevState => prevState.filter((_, listIndex) => listIndex !== index));
 			setIsAccordionTaskDone(prevState => prevState.filter((_, taskIndex) => taskIndex !== index));
 		}
-		// DZIAŁA USUWANIE, ALE PROBLEMEM JEST, ŻE CZASEM WYSKAKUJE BŁĄD BARDZO DŁUGI W KONSOLI - SPRÓBOWAĆ TO NAPRAWIĆ!!!
 	};
 
 	useEffect(() => {
@@ -98,7 +117,9 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 									checked={isAccordionTaskDone[index]}
 									onClick={() => handleIsAccordionTaskDone(index)}
 								/>
-								<Button className='create-accordion-item__edit-btn accordion-group-btn changed-state-btn'>
+								<Button
+									className='create-accordion-item__edit-btn accordion-group-btn changed-state-btn'
+									onClick={() => handleOpenEditTaskContainer(index)}>
 									<EditOutlined />
 								</Button>
 								<Button
@@ -107,6 +128,12 @@ const CreateAccordionItem: React.FC<CreateAccordionItemProps> = ({
 									<DeleteOutlined />
 								</Button>
 							</div>
+							<EditTask
+								isOpenEditTask={isOpenEditTaskContainer}
+								toggleEditTask={handleEditTaskToSave}
+								editTaskText={editTaskText}
+								setEditTaskText={setEditTaskText}
+							/>
 						</div>
 					))}
 				</Form.Text>

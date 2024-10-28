@@ -1,5 +1,6 @@
 @import "../global";
 .create-accordion-item {
+	position: relative;
 	&__container-actions {
 		position: absolute;
 		right: 0;
@@ -7,6 +8,15 @@
 	&__finish-btn {
 		font-size: 1.25rem;
 		border: 1px solid rgb(94, 94, 94);
+	}
+	&__edit-background-container {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 100vw;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.7);
+		z-index: 11;
 	}
 }
 .btn-primary {
